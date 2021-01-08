@@ -9,6 +9,14 @@
         {
             "id": "org.bahmni.registration.patient.next",
             "description": "After Bahmni Patient Registration, forward url configuration"
+        },
+        {
+            "id": "org.bahmni.registration.navigation",
+            "description": "Navigation within regsitration first and second page"
+        },
+        {
+            "id": "org.bahmni.registration.conceptSetGroup.observations",
+            "description": "Registration Second Page Forms"
         }
     ],
     "contextModel": [
@@ -16,6 +24,26 @@
         "activeVisitUuid"
     ],
     "config": {
+		 "patientInformation": {
+               
+		"insurance":{
+			"title":"Insurance Information",
+			"attributes":[
+				"NHIS Member",
+				"NHIS Number",
+				"NHIS Primary Contact Point"
+			]
+		},
+                "hidden": {
+                    "attributes": [
+                        "primaryContact"
+                    ]
+                },
+                "defaults":  {
+                    "class": "General",
+                    "landHolding": 2
+                }
+            },
         "mandatoryPersonAttributes": [
             "Caste"
         ],
@@ -29,6 +57,7 @@
         }],
         "showMiddleName": true,
         "showLastName": true,
+	"patientNameDisplayOrder": ["firstName", "middleName", "lastName"],
         "defaultVisitType": "General",
         "conceptSetUI": {
             "Department Sent To": {
@@ -51,6 +80,7 @@
                 "autocomplete": true
             }
         },
+
         "fieldValidation": {
             "primaryContact": {
                 "pattern": "[0-9]{8,10}",
@@ -77,6 +107,10 @@
                 "errorMessage": "Should be between 1 to 99"
             },
             "Contact Number" :{
+                "pattern": "[0-9]{0,}",
+                "errorMessage": "Should contain only numbers"
+            },
+			"NHIS Number": {
                 "pattern": "[0-9]{0,}",
                 "errorMessage": "Should contain only numbers"
             }
